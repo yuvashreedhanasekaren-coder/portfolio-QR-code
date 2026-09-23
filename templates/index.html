@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio QR Generator</title>
+</head>
+<body>
+
+    <h1>Portfolio QR Generator</h1>
+
+    <h2>{{ title }}</h2>
+
+    <section>
+        <h3>Portfolio QR Code</h3>
+        <img src="{{ url_for('static', filename='portfolio_qr.png') }}"
+             alt="Portfolio QR Code"
+             width="250">
+    </section>
+
+    <section>
+        <h3>AI Portfolio Analysis</h3>
+        <p>{{ analysis }}</p>
+    </section>
+
+</body>
+</html>
