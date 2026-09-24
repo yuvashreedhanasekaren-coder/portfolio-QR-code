@@ -3,25 +3,347 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Portfolio QR Generator</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            color: #ffffff;
+            background:
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.35), transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.30), transparent 30%),
+                linear-gradient(135deg, #09090f, #111827 55%, #0f172a);
+            overflow-x: hidden;
+        }
+
+        .background-orb {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.25;
+            z-index: -1;
+        }
+
+        .orb-one {
+            background: #6366f1;
+            top: -100px;
+            left: -100px;
+        }
+
+        .orb-two {
+            background: #06b6d4;
+            bottom: -100px;
+            right: -100px;
+        }
+
+        .container {
+            width: min(1100px, 92%);
+            margin: auto;
+            padding: 45px 0;
+        }
+
+        /* Header */
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .brand {
+            display: inline-block;
+            padding: 8px 16px;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 30px;
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(12px);
+            font-size: 13px;
+            letter-spacing: 1px;
+            color: #cbd5e1;
+            margin-bottom: 18px;
+        }
+
+        .header h1 {
+            font-size: clamp(38px, 6vw, 68px);
+            line-height: 1;
+            margin-bottom: 18px;
+            background: linear-gradient(90deg, #ffffff, #a5b4fc, #67e8f9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header p {
+            color: #94a3b8;
+            font-size: 17px;
+        }
+
+        /* Main layout */
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 24px;
+        }
+
+        .card {
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.07);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 26px;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.25);
+        }
+
+        /* QR card */
+
+        .qr-card {
+            padding: 35px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .qr-card::before {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            background: rgba(99,102,241,0.25);
+            border-radius: 50%;
+            filter: blur(50px);
+            top: -80px;
+            right: -60px;
+        }
+
+        .section-label {
+            color: #67e8f9;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 14px;
+        }
+
+        .portfolio-title {
+            font-size: 25px;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        .qr-frame {
+            width: 290px;
+            height: 290px;
+            margin: auto;
+            padding: 15px;
+            background: #ffffff;
+            border-radius: 22px;
+            box-shadow:
+                0 0 0 8px rgba(255,255,255,0.05),
+                0 20px 60px rgba(0,0,0,0.35);
+        }
+
+        .qr-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .scan-text {
+            margin-top: 25px;
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+
+        .scan-icon {
+            font-size: 25px;
+            margin-bottom: 8px;
+        }
+
+        /* AI card */
+
+        .ai-card {
+            padding: 35px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ai-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .ai-title {
+            font-size: 28px;
+        }
+
+        .ai-badge {
+            padding: 8px 14px;
+            border-radius: 30px;
+            background: rgba(34,211,238,0.12);
+            border: 1px solid rgba(34,211,238,0.25);
+            color: #67e8f9;
+            font-size: 12px;
+        }
+
+        .analysis-box {
+            padding: 24px;
+            border-radius: 18px;
+            background: rgba(0,0,0,0.18);
+            border: 1px solid rgba(255,255,255,0.08);
+            flex: 1;
+        }
+
+        .analysis-box p {
+            color: #cbd5e1;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+
+        footer {
+            text-align: center;
+            margin-top: 35px;
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        footer span {
+            color: #67e8f9;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 800px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+
+            .qr-frame {
+                width: 240px;
+                height: 240px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                padding: 25px 0;
+            }
+
+            .card {
+                border-radius: 20px;
+            }
+
+            .qr-card,
+            .ai-card {
+                padding: 25px;
+            }
+
+            .ai-header {
+                align-items: flex-start;
+                gap: 15px;
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-    <h1>Portfolio QR Generator</h1>
+<div class="background-orb orb-one"></div>
+<div class="background-orb orb-two"></div>
 
-    <h2>{{ title }}</h2>
+<div class="container">
 
-    <section>
-        <h3>Portfolio QR Code</h3>
-        <img src="{{ url_for('static', filename='portfolio_qr.png') }}"
-             alt="Portfolio QR Code"
-             width="250">
-    </section>
+    <header class="header">
 
-    <section>
-        <h3>AI Portfolio Analysis</h3>
-        <p>{{ analysis }}</p>
-    </section>
+        <div class="brand">
+            ✦ AI POWERED PORTFOLIO TOOL
+        </div>
 
+        <h1>Portfolio<br>QR Generator</h1>
+        <p>
+            Share your portfolio instantly. Analyze it intelligently.
+        </p>
+
+    </header>
+
+
+    <main class="dashboard">
+
+        <!-- QR SECTION -->
+        <section class="card qr-card">
+
+            <div class="section-label">
+                Portfolio Access
+            </div>
+
+            <div class="portfolio-title">
+                {{ title }}
+            </div>
+
+            <div class="qr-frame">
+
+                <img
+                    src="{{ url_for('static', filename='portfolio_qr.png') }}"
+                    alt="Portfolio QR Code"
+                >
+
+            </div>
+
+            <div class="scan-text">
+
+                <div class="scan-icon">⌁</div>
+                Scan the QR code to open the portfolio
+            </div>
+
+        </section>
+
+        <!-- AI SECTION -->
+        <section class="card ai-card">
+            <div class="ai-header">
+
+                <div>
+                    <div class="section-label">
+                        Intelligent Insights
+                    </div>
+
+                    <h2 class="ai-title">
+                        AI Analysis
+                    </h2>
+                </div>
+
+                <div class="ai-badge">
+                    ● LOCAL AI
+                </div>
+
+            </div>
+
+            <div class="analysis-box">
+                <p>
+                    {{ analysis }}
+                </p>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        Built with <span>Python</span> · Flask · QRCode · Local AI
+    </footer>
+
+</div>
 </body>
 </html>
