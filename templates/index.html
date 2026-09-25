@@ -206,9 +206,10 @@
             flex: 1;
         }
 
-        .analysis-box p {
+        .analysis-text {
             color: #cbd5e1;
             line-height: 1.8;
+            white-space: pre-line;
         }
 
         /* Footer */
@@ -270,10 +271,11 @@
     <header class="header">
 
         <div class="brand">
-            ✦ AI POWERED PORTFOLIO TOOL
+            AI POWERED PORTFOLIO TOOL
         </div>
 
         <h1>Portfolio<br>QR Generator</h1>
+
         <p>
             Share your portfolio instantly. Analyze it intelligently.
         </p>
@@ -306,16 +308,21 @@
             <div class="scan-text">
 
                 <div class="scan-icon">⌁</div>
+
                 Scan the QR code to open the portfolio
+
             </div>
 
         </section>
 
+
         <!-- AI SECTION -->
         <section class="card ai-card">
+
             <div class="ai-header">
 
                 <div>
+
                     <div class="section-label">
                         Intelligent Insights
                     </div>
@@ -323,27 +330,36 @@
                     <h2 class="ai-title">
                         AI Analysis
                     </h2>
+
                 </div>
 
                 <div class="ai-badge">
-                    ● LOCAL AI
+                    ◉ LOCAL AI
                 </div>
 
             </div>
 
+
             <div class="analysis-box">
-                <p>
+
+                <p class="analysis-text">
                     {{ analysis }}
                 </p>
+
             </div>
 
         </section>
+
     </main>
 
+
     <footer>
+
         Built with <span>Python</span> · Flask · QRCode · Local AI
+
     </footer>
 
 </div>
+
 </body>
 </html>
