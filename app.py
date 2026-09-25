@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template
 from ai_analyzer import fetch_portfolio_content, analyze_with_ollama
 from qr_generator import generate_qr_code
@@ -6,7 +7,10 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    generate_qr_code()
+    qr_file = "static/portfolio_qr.png"
+
+    if not os.path.exists(qr_file):
+        generate_qr_code()
 
     title, text = fetch_portfolio_content()
 
