@@ -1,20 +1,26 @@
 # Portfolio QR Generator
 
-An AI-powered Python project that automatically generates a QR code for a portfolio website and analyzes the portfolio content using a local AI model.
+An AI-powered Python project that generates a QR code for a portfolio website and analyzes the portfolio content using a local AI model.
 
 ## Project Overview
 
-Portfolio QR Generator combines **Python, web scraping, QR code generation, Flask, and local AI** to create a portfolio-sharing and analysis system.
+Portfolio QR Generator combines **Python, web scraping, QR code generation, Flask, and local AI**.
 
-The portfolio URL is configured directly in the project.
+The application:
 
-The application is designed to:
+1. Fetches the portfolio website content.
+2. Extracts useful portfolio information.
+3. Analyzes the content using a local AI model through Ollama.
+4. Generates a QR code for the portfolio.
+5. Displays the QR code and AI analysis through a Flask web dashboard.
 
-1. Fetch the portfolio website content.
-2. Extract useful portfolio information.
-3. Analyze the content using a local AI model through Ollama.
-4. Generate a QR code for the portfolio.
-5. Display the QR code and AI-generated portfolio analysis through a web dashboard.
+## Portfolio QR Code
+
+Scan the QR code below to open the portfolio website.
+
+![Portfolio QR Code](static/portfolio_qr.png)
+
+**Scan the QR code with your phone camera to open the portfolio.**
 
 ## Current Status
 
@@ -36,13 +42,16 @@ The application is designed to:
 - [x] AI analysis error handling
 - [x] QR code verification
 - [x] GitHub repository setup
+- [x] Project documentation
 
 ### Currently Working On
 
 - [ ] Ollama local AI model setup
+
+### Next Steps
+
 - [ ] Real AI portfolio analysis
 - [ ] Final end-to-end testing
-- [ ] Final documentation
 - [ ] Deployment
 
 ## Technologies
@@ -61,7 +70,6 @@ The application is designed to:
 
 ```text
 portfolio-QR-generator/
-
 │
 ├── app.py
 ├── config.py
@@ -102,7 +110,7 @@ QR Code + AI Analysis
 
 The project uses a local AI model through Ollama to analyze the portfolio content.
 
-The AI analysis is designed to identify information such as:
+The AI analysis is designed to identify:
 
 * Professional category
 * Technical skills
@@ -110,13 +118,13 @@ The AI analysis is designed to identify information such as:
 * Portfolio information
 * Short portfolio summary
 
-The AI integration is implemented locally so that the project does not depend on a paid cloud AI API.
+The AI integration is implemented locally without depending on a paid cloud AI API.
 
-**Note:** The Ollama integration code is completed, but the local AI model setup and real AI analysis testing are part of the remaining development.
+**Current status:** Ollama is installed and the AI integration code is completed. The local AI model setup is the current remaining task.
 
 ## QR Code
 
-The project generates a QR code from the configured portfolio URL.
+The QR code is generated from the portfolio URL configured in `config.py`.
 
 The generated QR code is stored in:
 
@@ -134,33 +142,13 @@ The Flask application provides a web dashboard that displays:
 * Generated QR code
 * AI portfolio analysis
 
-The dashboard also handles AI analysis errors gracefully when the local AI service is unavailable.
+The dashboard also handles AI analysis errors when the local AI service or model is unavailable.
 
 ## Development Timeline
 
-The project is being developed step-by-step using meaningful Git commits.
-
-### Current Progress
-
-* Commit 1 — Initial project setup
-* Commit 2 — Portfolio URL configuration
-* Commit 3 — QR code generation
-* Commit 4 — Portfolio content analyzer
-* Commit 5 — Local AI integration
-* Commit 6 — AI analyzer improvements
-* Commit 7 — Flask integration
-* Commit 8 — Flask application setup
-* Commit 9 — Dashboard development
-* Commit 10 — Flask dependency setup
-* Commit 11 — Improve QR code generation reliability
-* Commit 12 — Optimize QR handling in Flask app
-* Commit 13 — Improve AI analysis display
-
-The project is currently in the development and testing stage.
+The project is currently in the final AI model setup and testing stage.
 
 ## Planned Final Workflow
-
-Once development is complete:
 
 ```text
 Run the application
